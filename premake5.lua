@@ -113,6 +113,8 @@ project "msdfgen"
 		"skia/include/core",
 	}
 
+	disablewarnings {4244, 4267}
+
 	defines
 	{
 		"MSDFGEN_USE_CPP11",
