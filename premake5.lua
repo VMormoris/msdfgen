@@ -2,7 +2,7 @@ project "freetype"
 	location "freetype"
 	kind "StaticLib"
 	language "C"
-    staticruntime "off"
+	staticruntime "off"
 
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -51,7 +51,7 @@ project "freetype"
 		"freetype/src/sdf/sdf.c",
 		"freetype/src/sfnt/sfnt.c",
 		"freetype/src/smooth/smooth.c",
-        "freetype/src/svg/ftsvg.c",
+		"freetype/src/svg/ftsvg.c",
 		"freetype/src/truetype/truetype.c",
 		"freetype/src/type1/type1.c",
 		"freetype/src/type42/type42.c",
@@ -75,6 +75,10 @@ project "freetype"
 	filter "system:windows"
 		systemversion "latest"
 
+	filter "system:linux"
+		systemversion "latest"
+		pic "On"
+
 	filter "configurations:Debug"
 		runtime "Debug"
 		symbols "on"
@@ -82,12 +86,17 @@ project "freetype"
 	filter "configurations:Release"
 		runtime "Release"
 		optimize "on"
+	
+	filter "configurations:Dist"
+		runtime "Release"
+		optimize "on"
+		symbols "off"
 
 project "msdfgen"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
-    staticruntime "off"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -129,6 +138,10 @@ project "msdfgen"
 	filter "system:windows"
 		systemversion "latest"
 
+	filter "system:linux"
+		systemversion "latest"
+		pic "On"
+
 	filter "configurations:Debug"
 		runtime "Debug"
 		symbols "on"
@@ -136,3 +149,8 @@ project "msdfgen"
 	filter "configurations:Release"
 		runtime "Release"
 		optimize "on"
+
+	filter "configurations:Dist"
+		runtime "Release"
+		optimize "on"
+		symbols "off"
